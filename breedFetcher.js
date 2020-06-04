@@ -4,8 +4,8 @@ const fetchBreedDescription = function(breedName, callback) {
 
   request(`https://api.thecatapi.com/v1/breeds/search?q=${breedName}`, (error, response, body) => {
 
-    if (breedName === undefined) {
-      error = "No breed name given or found.";
+    if (JSON.parse(body).length === 0) {
+      error = "Invalid breed name.";
     }
     if (error) {
       callback(error);
